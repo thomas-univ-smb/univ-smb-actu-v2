@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}Concert{% endblock %}
+{% block content %}
+{% for item in data %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title"> Le {{ item.dateConcert }}</h5>
+        <p class="card-text">{{ item.title }}</p>
+        <a href="#" class="btn btn-primary">Réserver ma place</a>
+        </div>
+    </div>
+    <br />
+{% endfor %}
+{% endblock %}

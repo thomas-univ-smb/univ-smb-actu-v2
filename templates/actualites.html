@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+{% block title %}Actualité {% if name != "all" %}{{ name }}{% endif %}{% endblock %}
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+      <div class="col">
+        {% for item in data %}
+        {% if (loop.index % 3) == 0 %}
+        {% if item.type == name or name == "all" %}
+            <div class="card {{ item.type }}" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title"> Le {{ item.dateActu }}</h5>
+                <p class="card-text">{{ item.title }}</p>
+                </div>
+            </div>
+            <br />
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+      </div>
+      <div class="col">
+        {% for item in data %}
+        {% if (loop.index % 3) == 1 %}
+        {% if item.type == name or name == "all" %}
+            <div class="card {{ item.type }}" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title"> Le {{ item.dateActu }}</h5>
+                <p class="card-text">{{ item.title }}</p>
+                </div>
+            </div>
+            <br />
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="col">
+        {% for item in data %}
+        {% if (loop.index % 3) == 2 %}
+        {% if item.type == name or name == "all" %}
+            <div class="card {{ item.type }}" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title"> Le {{ item.dateActu }}</h5>
+                <p class="card-text">{{ item.title }}</p>
+                </div>
+            </div>
+            <br />
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+<br />
+<h3>Commentaire(s)</h3>
+
+{% for item in commentaire %}
+<div class="alert alert-primary" role="alert">
+    Commentaire sur l'actualité {{ item.actu }} par {{ item.name }} : {{ item.commentaire }}
+</div>
+<br />
+{% endfor %}
+<br />
+<form method="POST" action="/commentaire">
+    <div class="mb-3">
+        <label for="inputActu" class="form-label">Quel actualités ?</label>
+        <select class="form-select" name="actu" aria-label="Default select example">
+            {% for item in data %}
+                {% if item.type == name or name == "all" %}
+                    <option value="{{ item.title }}"">{{ item.title }}</option>
+                {% endif %}
+            {% endfor %}
+          </select>
+      </div>
+    
+    <div class="mb-3">
+      <label for="inputName" class="form-label">Name</label>
+      <input type="text" class="form-control" id="inputName" name="name">
+    </div>
+    <div class="mb-3">
+      <label for="inputCommentaire" class="form-label">Commentaire</label>
+      <input type="text" class="form-control" id="inputCommentaire" name="commentaire">
+    </div>
+    <button type="submit" class="btn btn-primary">Envoyer</button>
+  </form>
+{% endblock %}
