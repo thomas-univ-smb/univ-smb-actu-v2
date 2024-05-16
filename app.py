@@ -11,22 +11,22 @@ def start():
 @app.route("/actualites")
 def actualite():
     """ Afficher les actualités """
-    data=read_json("actualites")
+    dataActualites=read_json("actualites")
     dataCommentaire=read_json("commentaire")
-    return render_template("actualites.html", data=data, commentaire=dataCommentaire, name="all")
+    return render_template("actualites.html", data=dataActualites, commentaire=dataCommentaire, name="all")
 
 @app.route("/actualites/<name>")
 def specific_actualite(name):
     """ Afficher les actualités par type """
-    data=read_json("actualites")
+    dataActualites=read_json("actualites")
     dataCommentaire=read_json("commentaire")
-    return render_template("actualites.html", data=data, commentaire=dataCommentaire, name=name)
+    return render_template("actualites.html", data=dataActualites, commentaire=dataCommentaire, name=name)
 
 @app.route("/concert")
 def concert():
     """ Afficher les concerts """
-    data=read_json("concert")
-    return render_template("concert.html", data=data)
+    dataActualites=read_json("concert")
+    return render_template("concert.html", data=dataActualites)
 
 @app.route("/commentaire", methods=["POST"])
 def commentaire():
