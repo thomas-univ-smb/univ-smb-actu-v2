@@ -98,7 +98,6 @@ def ajouterconcert():
     <input requiered placeholder=dateConcert type=date name=dateConcert>
     <p><input type=submit value=Envoyer>
     </form>
-
     '''
 
 def read_json(name):
